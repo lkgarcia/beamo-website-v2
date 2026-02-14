@@ -56,6 +56,8 @@ This will start a development server at `http://localhost:8080` serving files fr
 
 **Edit source files in the `src/` directory only.** The `public/` directory is auto-generated and should not be edited manually.
 
+**Important:** The `src/index.html` file references non-minified files (`styles.css` and `main.js`). During the build process, these references are automatically updated to point to the minified versions (`styles.min.css` and `main.min.js`) in the `public/` directory.
+
 ### Building
 
 To create production-ready files:
@@ -66,9 +68,10 @@ npm run build
 
 This command:
 1. Cleans the `public/` directory
-2. Copies HTML and assets from `src/` to `public/`
-3. Minifies CSS: `src/css/styles.css` → `public/css/styles.min.css` (~24% reduction)
-4. Minifies JavaScript: `src/js/main.js` → `public/js/main.min.js` (~55% reduction)
+2. Copies HTML from `src/` to `public/` (automatically updating file references to minified versions)
+3. Copies assets from `src/` to `public/`
+4. Minifies CSS: `src/css/styles.css` → `public/css/styles.min.css` (~24% reduction)
+5. Minifies JavaScript: `src/js/main.js` → `public/js/main.min.js` (~55% reduction)
 
 ### Available Scripts
 
