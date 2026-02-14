@@ -1237,7 +1237,7 @@ p { max-width: 640px; }
 
   .hero {
     padding: 120px 0 60px;
-    min-height: auto;
+    min-height: 100vh;
   }
 
   .hero h1 {
