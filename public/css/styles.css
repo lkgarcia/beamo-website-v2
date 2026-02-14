@@ -134,22 +134,23 @@ p { max-width: 640px; }
 
 /* ---------- NAVBAR ---------- */
 .navbar {
+  --navbar-opacity: 0;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, calc(0.55 * var(--navbar-opacity)));
+  backdrop-filter: blur(calc(20px * var(--navbar-opacity)));
+  -webkit-backdrop-filter: blur(calc(20px * var(--navbar-opacity)));
+  border: 1px solid rgba(255, 255, 255, calc(0.25 * var(--navbar-opacity)));
   border-top: none;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
-  transition: all var(--transition);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, calc(0.04 * var(--navbar-opacity)));
+  transition: box-shadow var(--transition);
 }
 
 .navbar.scrolled {
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, calc(0.08 * var(--navbar-opacity)));
 }
 
 .nav-container {
