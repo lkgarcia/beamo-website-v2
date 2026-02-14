@@ -6,8 +6,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---------- NAVBAR SCROLL EFFECT ----------
   const navbar = document.getElementById('navbar');
   const OPACITY_THRESHOLD = 200; // Configurable threshold in pixels
+  let ticking = false;
 
-  const handleScroll = () => {
+  const updateNavbarOpacity = () => {
     const scrollY = window.scrollY;
     
     // Calculate opacity: 0 at top, 1 at threshold
@@ -21,6 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
+    }
+    
+    ticking = false;
+  };
+
+  const handleScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(updateNavbarOpacity);
+      ticking = true;
     }
   };
 

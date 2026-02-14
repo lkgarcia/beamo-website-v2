@@ -146,7 +146,7 @@ p { max-width: 640px; }
   border: 1px solid rgba(255, 255, 255, calc(0.25 * var(--navbar-opacity)));
   border-top: none;
   box-shadow: 0 4px 30px rgba(0, 0, 0, calc(0.04 * var(--navbar-opacity)));
-  transition: box-shadow var(--transition);
+  transition: all var(--transition);
 }
 
 .navbar.scrolled {
