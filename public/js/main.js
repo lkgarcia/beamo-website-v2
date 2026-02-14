@@ -5,12 +5,32 @@
 document.addEventListener('DOMContentLoaded', () => {
   // ---------- NAVBAR SCROLL EFFECT ----------
   const navbar = document.getElementById('navbar');
+  const OPACITY_THRESHOLD = 200; // Configurable threshold in pixels
+  let ticking = false;
 
-  const handleScroll = () => {
-    if (window.scrollY > 40) {
+  const updateNavbarOpacity = () => {
+    const scrollY = window.scrollY;
+    
+    // Calculate opacity: 0 at top, 1 at threshold
+    const opacity = Math.min(scrollY / OPACITY_THRESHOLD, 1);
+    
+    // Apply opacity to navbar background
+    navbar.style.setProperty('--navbar-opacity', opacity);
+    
+    // Keep the scrolled class for other effects (e.g., shadow)
+    if (scrollY > 40) {
       navbar.classList.add('scrolled');
     } else {
       navbar.classList.remove('scrolled');
+    }
+    
+    ticking = false;
+  };
+
+  const handleScroll = () => {
+    if (!ticking) {
+      requestAnimationFrame(updateNavbarOpacity);
+      ticking = true;
     }
   };
 
