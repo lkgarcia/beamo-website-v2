@@ -44,17 +44,17 @@ jobs:
       - name: Run Tests
         run: npm test
       
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      
       - name: Bump version
         run: |
           npm version patch -m "chore: bump version to %s [skip ci]"
           NEW_VERSION=$(node -p "require('./package.json').version")
           echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
           echo "Bumped version to: $NEW_VERSION"
-      
-      - name: Configure Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
       
       - name: Push version bump
         run: |
@@ -74,4 +74,3 @@ jobs:
         if: failure()
         run: |
           echo "❌ Deployment failed! Please check the logs above for details."
-          exit 1
