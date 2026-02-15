@@ -9,7 +9,15 @@ A modern, responsive landing page for Beamo - showcasing flexible workspace solu
 - 🚀 Automated CI/CD deployment to GitHub Pages
 - ♿ Accessibility-focused with semantic HTML and ARIA labels
 
-**Sections:** Navigation, Hero, Services (Flexible Workspace & Digital Solutions), About Us, Customer Showcase, Testimonials, FAQ, and Contact.
+**Sections:**
+- **Navigation**: Sticky header with logo and smooth scroll links to all sections
+- **Hero**: Eye-catching introduction with headline, CTA button, and mesh gradient background
+- **Services**: Detailed overview of Flexible Workspace and Digital Solutions offerings
+- **About Us**: Mission statement and key differentiators that set Beamo apart
+- **Customers**: Horizontally scrolling carousel showcasing client logos
+- **Testimonials**: Client success stories and feedback in an engaging grid/carousel layout
+- **FAQ**: Accordion-style frequently asked questions for quick answers
+- **Contact**: Contact form and social media links for easy engagement
 
 ## Project Structure
 
