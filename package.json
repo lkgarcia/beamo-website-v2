@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "clean": "rm -rf public",
-    "copy:html": "mkdir -p public && VERSION=$(node -p \"require('./package.json').version\") && sed 's/css\\/styles\\.css/css\\/styles.min.css/g; s/js\\/main\\.js/js\\/main.min.js/g; s/id=\"appVersion\"/id=\"appVersion\" data-version=\"'\"$VERSION\"'\"/g' src/index.html > public/index.html",
+    "copy:html": "node scripts/inject-version.js",
     "copy:assets": "mkdir -p public/assets && cp -r src/assets/* public/assets/",
     "minify:css": "mkdir -p public/css && cssnano src/css/styles.css public/css/styles.min.css",
     "minify:js": "mkdir -p public/js && terser src/js/main.js -o public/js/main.min.js -c -m --comments false",
