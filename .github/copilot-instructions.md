@@ -1,4 +1,4 @@
-# GitHub Copilot Instructions for Beamo Website v2
+# GitHub Copilot Instructions for Beamo Website
 
 ## Project Overview
 
@@ -55,7 +55,7 @@ npm run deploy   # Build and deploy to GitHub Pages
 ## File Organization
 
 ```
-beamo-website-v2/
+beamo-website/
 ├── src/                    # SOURCE FILES - Edit these
 │   ├── index.html         # Main HTML file
 │   ├── css/styles.css     # Unminified CSS
