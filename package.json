@@ -14,6 +14,10 @@
     "dev": "npx live-server src --port=8080",
     "deploy": "npm run build && git subtree push --prefix public origin gh-pages"
   },
+  "engines": {
+    "node": ">=20.11.0",
+    "npm": ">=10.2.0"
+  },
   "devDependencies": {
     "cssnano": "^6.0.1",
     "cssnano-cli": "^1.0.5",
@@ -28,6 +32,6 @@
     "static-site",
     "beamo"
   ],
-  "author": "",
+  "author": "lkgarcia",
   "license": "MIT"
 }
