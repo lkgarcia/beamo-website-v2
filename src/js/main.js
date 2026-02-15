@@ -114,23 +114,61 @@ document.addEventListener('DOMContentLoaded', () => {
   contactForm.addEventListener('submit', e => {
     e.preventDefault();
 
+    // Get form data
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+
+    // Log form submission for testing/debugging
+    console.log('Contact form submitted:', { name, email, message });
+
+    // Validate inputs
+    if (!name || !email || !message) {
+      console.error('Form validation failed: All fields are required');
+      alert('Please fill in all fields');
+      return;
+    }
+
+    // Create mailto URL with properly encoded data
+    const recipient = 'hello@beamo.ph';
+    const subject = encodeURIComponent(`Contact Form Submission from ${name}`);
+    const body = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+    );
+    
+    const mailtoURL = `mailto:${recipient}?subject=${subject}&body=${body}`;
+
+    console.log('Generated mailto URL:', mailtoURL);
+
+    // Update button state
     const btn = contactForm.querySelector('button[type="submit"]');
     const originalText = btn.textContent;
-    btn.textContent = 'Sending…';
+    btn.textContent = 'Opening email client…';
     btn.disabled = true;
 
-    // Simulate send
-    setTimeout(() => {
-      btn.textContent = 'Sent ✓';
-      btn.style.background = '#6DD794';
-      contactForm.reset();
+    // Open mailto link
+    try {
+      window.location.href = mailtoURL;
+      console.log('Successfully triggered mailto operation');
 
+      // Show success state
       setTimeout(() => {
-        btn.textContent = originalText;
-        btn.style.background = '';
-        btn.disabled = false;
-      }, 2500);
-    }, 1200);
+        btn.textContent = 'Email Draft Opened ✓';
+        btn.style.background = '#6DD794';
+        contactForm.reset();
+
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = '';
+          btn.disabled = false;
+        }, 2500);
+      }, 500);
+    } catch (error) {
+      console.error('Error opening email client:', error);
+      alert('There was an error opening your email client. Please try again.');
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }
   });
 
   // ---------- SMOOTH SCROLL OFFSET ----------
