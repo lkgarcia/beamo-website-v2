@@ -57,6 +57,7 @@ jobs:
         run: npm run deploy
         env:
           VERSION: ${{ env.NEW_VERSION }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       - name: Create deployment status
         if: success()
