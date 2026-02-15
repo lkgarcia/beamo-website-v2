@@ -1,11 +1,11 @@
-# Beamo Website v2
+# Beamo Website
 
 Modern static website for Beamo with a clean separation between source code and production build output.
 
 ## Project Structure
 
 ```
-beamo-website-v2/
+beamo-website/
 ├── src/                    # Source files (edit these)
 │   ├── index.html
 │   ├── css/
@@ -39,8 +39,8 @@ beamo-website-v2/
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/lkgarcia/beamo-website-v2.git
-cd beamo-website-v2
+git clone https://github.com/lkgarcia/beamo-website.git
+cd beamo-website
 ```
 
 2. Install dependencies:

@@ -11,7 +11,7 @@
 module.exports = {
   // Use GITHUB_TOKEN for authentication in CI/CD, fallback to git credentials locally
   repo: process.env.GITHUB_TOKEN
-    ? `https://x-access-token:${process.env.GITHUB_TOKEN}@github.com/lkgarcia/beamo-website-v2.git`
+    ? `https://x-access-token:${process.env.GITHUB_TOKEN}@github.com/lkgarcia/beamo-website.git`
     : undefined, // undefined will use default git credentials
   
   // Configure git user for commits

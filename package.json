@@ -1,5 +1,5 @@
 {
-  "name": "beamo-website-v2",
+  "name": "beamo-website",
   "version": "1.0.6",
   "description": "Beamo website - static site with build tooling",
   "private": true,
@@ -27,7 +27,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lkgarcia/beamo-website-v2.git"
+    "url": "https://github.com/lkgarcia/beamo-website.git"
   },
   "keywords": [
     "static-site",
