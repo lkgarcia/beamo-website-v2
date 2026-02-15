@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 /**
  * GitHub Pages deployment script
- * Uses gh-pages package programmatically with configuration from .gh-pages.config.js
+ * Uses gh-pages package programmatically with configuration from gh-pages.config.js
  */
 
 const ghpages = require('gh-pages');
 const path = require('path');
 
 // Load configuration
-const config = require('../.gh-pages.config.js');
+const config = require('./gh-pages.config.js');
 
 // Directory to publish
 const publicDir = path.join(__dirname, '../public');
