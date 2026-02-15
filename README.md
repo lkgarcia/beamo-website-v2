@@ -79,6 +79,7 @@ This command:
 |---------|-------------|
 | `npm run dev` | Start development server (serves from `src/`) |
 | `npm run build` | Build production files to `public/` |
+| `npm test` | Run build validation tests |
 | `npm run clean` | Remove the `public/` directory |
 | `npm run copy:html` | Copy HTML from src to public |
 | `npm run copy:assets` | Copy assets from src to public |
@@ -90,9 +91,24 @@ This command:
 
 The website is deployed to GitHub Pages from the `public/` directory.
 
-### Automatic Deployment
+### Automated CI/CD Deployment
 
-To build and deploy:
+When you push changes to the `main` branch, the GitHub Actions workflow automatically:
+
+1. **Validates the build**: Runs `npm test` to ensure the build completes successfully
+2. **Caches dependencies**: Uses optimized caching based on `package-lock.json` hash for faster builds
+3. **Extracts version**: Reads the current version from `package.json`
+4. **Bumps version**: Automatically increments the patch version (e.g., 2.0.0 → 2.0.1)
+5. **Creates git tag**: Tags the new version in the repository
+6. **Builds the site**: Generates production-ready files in the `public/` directory
+7. **Deploys to GitHub Pages**: Pushes the `public/` directory to the `gh-pages` branch
+8. **Provides feedback**: Shows success/failure status in the workflow logs
+
+The workflow includes the `[skip ci]` marker in version bump commits to prevent infinite deployment loops.
+
+### Manual Deployment
+
+To build and deploy manually:
 
 ```bash
 npm run deploy
@@ -102,7 +118,7 @@ This command will:
 1. Run the build process
 2. Push the `public/` directory to the `gh-pages` branch
 
-### Manual Deployment
+### Local Deployment
 
 If you prefer to deploy manually:
 

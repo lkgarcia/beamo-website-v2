@@ -1,6 +1,6 @@
 {
   "name": "beamo-website-v2",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "description": "Beamo website - static site with build tooling",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "minify:css": "mkdir -p public/css && cssnano src/css/styles.css public/css/styles.min.css",
     "minify:js": "mkdir -p public/js && terser src/js/main.js -o public/js/main.min.js -c -m --comments false",
     "build": "npm run clean && npm run copy:html && npm run copy:assets && npm run minify:css && npm run minify:js",
+    "test": "npm run build && echo 'Build validation successful!'",
     "dev": "npx live-server src --port=8080",
     "deploy": "npm run build && git subtree push --prefix public origin gh-pages"
   },
