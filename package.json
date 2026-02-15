@@ -12,7 +12,7 @@
     "build": "npm run clean && npm run copy:html && npm run copy:assets && npm run minify:css && npm run minify:js",
     "test": "npm run build && echo 'Build validation successful!'",
     "dev": "npx live-server src --port=8080",
-    "deploy": "npm run build && git subtree push --prefix public origin gh-pages"
+    "deploy": "npm run build && gh-pages -d public"
   },
   "engines": {
     "node": ">=20.11.0",
@@ -21,6 +21,7 @@
   "devDependencies": {
     "cssnano": "^6.0.1",
     "cssnano-cli": "^1.0.5",
+    "gh-pages": "^6.3.0",
     "live-server": "^1.2.2",
     "terser": "^5.27.0"
   },
