@@ -13,6 +13,10 @@ beamo-website-v2/
 │   ├── js/
 │   │   └── main.js
 │   └── assets/
+├── scripts/                # Build and deployment scripts
+│   ├── deploy.js
+│   ├── gh-pages.config.js
+│   └── inject-version.js
 ├── public/                 # Build output (auto-generated)
 │   ├── index.html
 │   ├── css/
@@ -118,17 +122,16 @@ This command will:
 1. Run the build process
 2. Push the `public/` directory to the `gh-pages` branch
 
-### Local Deployment
+### Configuration
 
-If you prefer to deploy manually:
+Deployment settings are configured in `scripts/gh-pages.config.js`, which includes:
+- Repository URL (with GitHub token support for CI/CD)
+- Git user configuration
+- Target branch (`gh-pages`)
+- Commit message
+- Silent mode for secure token handling
 
-```bash
-# Build the site
-npm run build
-
-# Push to gh-pages branch
-git subtree push --prefix public origin gh-pages
-```
+You can modify this file to customize deployment behavior.
 
 ## Performance Optimizations
 
@@ -151,10 +154,18 @@ The build process includes:
 
 These are the files you should edit:
 
-- `src/index.html` - Main HTML file (references `.min.css` and `.min.js`)
+- `src/index.html` - Main HTML file (references non-minified `.css` and `.js` files)
 - `src/css/styles.css` - Unminified CSS with comments and formatting
 - `src/js/main.js` - Unminified JavaScript with comments
 - `src/assets/` - Images, icons, and other static assets
+
+### Build Scripts (`scripts/`)
+
+These scripts handle the build and deployment process:
+
+- `scripts/inject-version.js` - Injects version from `package.json` into HTML and updates asset paths to minified versions
+- `scripts/deploy.js` - Programmatic deployment script using gh-pages API
+- `scripts/gh-pages.config.js` - Deployment configuration (repo, branch, user, etc.)
 
 ### Build Output (`public/`)
 
