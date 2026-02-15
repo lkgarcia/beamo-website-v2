@@ -1,6 +1,6 @@
 {
   "name": "beamo-website",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Beamo website - static site with build tooling",
   "private": true,
   "scripts": {
