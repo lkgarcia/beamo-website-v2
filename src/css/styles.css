@@ -20,6 +20,7 @@
   --white: #ffffff;
   --bg: #fafafa;
   --bg-alt: #f4f4f4;
+  --body-bg: #009386;
   --radius: 8px;
   --radius-lg: 14px;
   --shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
@@ -41,6 +42,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  background-color: var(--body-bg);
 }
 
 a {
@@ -266,13 +268,13 @@ p { max-width: 640px; }
     radial-gradient(ellipse 40% 60% at 30% 80%, rgba(109, 215, 148, 0.36) 0%, transparent 70%),
     radial-gradient(ellipse 60% 40% at 50% 50%, rgba(255, 204, 150, 0.26) 0%, transparent 60%);
   background-color: var(--white);
-  animation: meshFloat 20s ease-in-out infinite alternate;
+  animation: meshFloat 10s ease-in-out infinite alternate;
 }
 
 @keyframes meshFloat {
   0% { transform: scale(1) translate(0, 0); }
   33% { transform: scale(1.02) translate(-1%, 1%); }
-  66% { transform: scale(0.98) translate(1%, -1%); }
+  66% { transform: scale(1.68) translate(1%, -1%); }
   100% { transform: scale(1.01) translate(-0.5%, 0.5%); }
 }
 
