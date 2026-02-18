@@ -15,7 +15,6 @@ A modern, responsive landing page for Beamo - showcasing flexible workspace solu
 - **Services**: Detailed overview of Flexible Workspace and Digital Solutions offerings
 - **About Us**: Mission statement and key differentiators that set Beamo apart
 - **Customers**: Horizontally scrolling carousel showcasing client logos
-- **Testimonials**: Client success stories and feedback in an engaging grid/carousel layout
 - **FAQ**: Accordion-style frequently asked questions for quick answers
 - **Contact**: Contact form and social media links for easy engagement
 
