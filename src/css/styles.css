@@ -866,7 +866,10 @@ p { max-width: 640px; }
 }
 
 /* ---------- TESTIMONIALS ---------- */
+/* Hidden per GitHub issue: Feature: Remove Testimonials */
+/* Reference: https://github.com/lkgarcia/beamo-website/issues/[issue-number] */
 .testimonials {
+  display: none;
   position: relative;
   padding: 100px 0;
   background: var(--bg);
