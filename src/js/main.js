@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const fadeElements = document.querySelectorAll(
     '.service-text, .service-visual, .about-text, .about-visual, ' +
     '.testimonial-card, .faq-item, .contact-info, .contact-form, ' +
-    '.feature-card'
+    '.feature-card, .product-card'
   );
 
   fadeElements.forEach(el => el.classList.add('fade-in'));
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (entry.isIntersecting) {
           // Stagger sibling cards
           const parent = entry.target.parentElement;
-          if (entry.target.classList.contains('feature-card') || entry.target.classList.contains('testimonial-card')) {
+          if (entry.target.classList.contains('feature-card') || entry.target.classList.contains('testimonial-card') || entry.target.classList.contains('product-card')) {
             const siblings = Array.from(parent.children);
             const index = siblings.indexOf(entry.target);
             entry.target.style.transitionDelay = `${index * 0.08}s`;
