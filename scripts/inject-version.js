@@ -21,14 +21,9 @@ const version = packageJson.version;
 function processHtml(srcPath, destPath, assetPrefix = '') {
   let html = fs.readFileSync(srcPath, 'utf8');
 
-  // Replace asset paths for production (handle both root-relative and prefix-relative)
-  if (assetPrefix) {
-    html = html.replace(new RegExp(assetPrefix.replace('../', '\\.\\./') + 'css/styles\\.css', 'g'), `${assetPrefix}css/styles.min.css`);
-    html = html.replace(new RegExp(assetPrefix.replace('../', '\\.\\./') + 'js/main\\.js', 'g'), `${assetPrefix}js/main.min.js`);
-  } else {
-    html = html.replace(/css\/styles\.css/g, 'css/styles.min.css');
-    html = html.replace(/js\/main\.js/g, 'js/main.min.js');
-  }
+  // Replace asset paths for production using split/join to avoid regex escaping issues
+  html = html.split(`${assetPrefix}css/styles.css`).join(`${assetPrefix}css/styles.min.css`);
+  html = html.split(`${assetPrefix}js/main.js`).join(`${assetPrefix}js/main.min.js`);
 
   // Inject version into HTML
   html = html.replace(/id="appVersion"/g, `id="appVersion" data-version="${version}"`);
