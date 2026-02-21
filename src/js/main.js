@@ -71,6 +71,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // ---------- NAV DROPDOWN (MOBILE TOGGLE) ----------
+  const dropdownItems = document.querySelectorAll('.nav-item--dropdown');
+  dropdownItems.forEach(item => {
+    const trigger = item.querySelector(':scope > a');
+    trigger.addEventListener('click', e => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        item.classList.toggle('open');
+      }
+    });
+  });
+
   // ---------- ACTIVE NAV LINK ON SCROLL ----------
   const sections = document.querySelectorAll('section[id]');
   const navAnchors = document.querySelectorAll('.nav-links a:not(.btn)');
