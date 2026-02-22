@@ -36,7 +36,13 @@
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#services">Services</a></li>
-        <li><a href="#products">Products</a></li>
+        <li class="nav-item--dropdown">
+          <a href="#products">Products <svg class="nav-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg></a>
+          <ul class="nav-dropdown">
+            <li><a href="products/fella.html">Fella</a></li>
+            <li><a href="deskhubpilot.html">DeskHubPilot</a></li>
+          </ul>
+        </li>
         <li><a href="#about">About</a></li>
         <li><a href="#customers">Customers</a></li>
         <li><a href="#faq">FAQ</a></li>
@@ -523,7 +529,7 @@
   <!-- ============ FOOTER ============ -->
   <footer class="footer">
     <div class="container footer-container">
-      <p class="footer-copy">&copy; <span id="currentYear"></span> Beamo<span id="appVersion" data-version="1.0.11"></span>. All rights reserved.</p>
+      <p class="footer-copy">&copy; <span id="currentYear"></span> Beamo<span id="appVersion" data-version="1.0.12"></span>. All rights reserved.</p>
       <div class="footer-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
