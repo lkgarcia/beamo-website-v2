@@ -19,19 +19,23 @@
   --text-light: #777;
   --white: #ffffff;
   --bg: #fafafa;
-  --bg-alt: #f4f4f4;
+  --bg-alt: #e1e1e1;
   --body-bg: #009386;
   --radius: 8px;
   --radius-lg: 14px;
+  --radius-xl: 20px;
   --shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
   --shadow-hover: 0 8px 32px rgba(0, 0, 0, 0.1);
   --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-size: 16px;
+  --font-size-2xs: 0.625rem;
+  --font-size-xs: 0.75rem;
 }
 
 html {
   scroll-behavior: smooth;
-  font-size: 16px;
+  font-size: var(--font-size);
 }
 
 body {
@@ -1408,8 +1412,7 @@ p { max-width: 640px; }
 
 .hero--product .hero-content {
   text-align: left;
-  max-width: none;
-  margin-left: 0;
+  max-width: 1200px;
   display: flex;
   align-items: center;
   gap: 80px;
@@ -1425,6 +1428,7 @@ p { max-width: 640px; }
 .hero-product-image {
   flex: 0 0 520px;
   max-width: 520px;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1436,6 +1440,131 @@ p { max-width: 640px; }
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-hover);
   display: block;
+}
+
+/* ---------- HERO CAROUSEL ---------- */
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-hover);
+}
+
+.hero-carousel__track {
+  display: grid;
+}
+
+.hero-carousel__slide {
+  grid-area: 1 / 1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-xl);
+}
+
+.hero-carousel__slide.active {
+  opacity: 1;
+}
+
+.hero-carousel__slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* --- Carousel tab bar --- */
+.hero-carousel__tabs {
+  display: flex;
+  align-items: stretch;
+  position: absolute;
+  bottom: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  width: calc(100% - 32px);
+  background: var(--bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 9px;
+  border: 1px solid var(--bg-alt);
+  padding: 4px;
+  gap: 0;
+  overflow: hidden;
+}
+
+.hero-carousel__tab {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 4px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--text-light);
+  font-family: var(--font);
+  font-size: var(--font-size-2xs);
+  font-weight: 500;
+  transition: color 0.25s ease, background 0.25s ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.hero-carousel__tab svg,
+.hero-carousel__tab > span:not(.hero-carousel__tab-progress) {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-carousel__tab svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  transition: stroke 0.25s ease;
+}
+
+.hero-carousel__tab.active {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--primary);
+}
+
+.hero-carousel__tab:not(.active):hover {
+  color: var(--primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.hero-carousel__tab-divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 8px;
+  flex-shrink: 0;
+}
+
+/* Progress fill sweeps across the full background of the active tab */
+.hero-carousel__tab-progress {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 0;
+  background: rgba(0, 184, 168, 0.32);
+  /* border-radius: 9px; */
+}
+
+.hero-carousel__tab.active .hero-carousel__tab-progress {
+  animation: carousel-progress 4s linear forwards;
+}
+
+@keyframes carousel-progress {
+  from { width: 0%; }
+  to   { width: 100%; }
 }
 
 .back-link {
