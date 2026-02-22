@@ -309,6 +309,67 @@ document.addEventListener('DOMContentLoaded', () => {
     browserObserver.observe(browserFrame);
   }
 
+  // ---------- HERO CAROUSEL ----------
+  document.querySelectorAll('.hero-product-image').forEach(wrapper => {
+    const carousel = wrapper.querySelector('.hero-carousel');
+    if (!carousel) return;
+
+    const slides = carousel.querySelectorAll('.hero-carousel__slide');
+    const tabs = wrapper.querySelectorAll('.hero-carousel__tab');
+
+    if (!slides.length) return;
+
+    let current = 0;
+    let autoTimer;
+
+    const resetProgress = (tab) => {
+      const bar = tab.querySelector('.hero-carousel__tab-progress');
+      if (!bar) return;
+      // Force animation restart by removing and re-adding active class
+      bar.style.animation = 'none';
+      // eslint-disable-next-line no-unused-expressions
+      bar.offsetWidth; // trigger reflow
+      bar.style.animation = '';
+    };
+
+    const goTo = (index) => {
+      slides[current].classList.remove('active');
+      if (tabs[current]) {
+        tabs[current].classList.remove('active');
+        tabs[current].setAttribute('aria-selected', 'false');
+      }
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      if (tabs[current]) {
+        tabs[current].classList.add('active');
+        tabs[current].setAttribute('aria-selected', 'true');
+        resetProgress(tabs[current]);
+      }
+    };
+
+    const startAuto = () => {
+      autoTimer = setInterval(() => goTo(current + 1), 4000);
+    };
+
+    const stopAuto = () => clearInterval(autoTimer);
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const index = parseInt(tab.dataset.index, 10);
+        stopAuto();
+        goTo(index);
+        startAuto();
+      });
+    });
+
+    wrapper.addEventListener('mouseenter', stopAuto);
+    wrapper.addEventListener('mouseleave', startAuto);
+
+    // Kick off initial progress bar
+    if (tabs[0]) resetProgress(tabs[0]);
+    startAuto();
+  });
+
   // ---------- FAQ ACCORDION (SINGLE-OPEN) ----------
   const faqItems = document.querySelectorAll('.faq-item');
 
