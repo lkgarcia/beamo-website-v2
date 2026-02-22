@@ -49,21 +49,31 @@ processHtml(
   path.join(__dirname, '../public/index.html')
 );
 
-// Process product pages in src/products/
+// Process product pages in src/products/ (recursively)
 const productsSrcDir = path.join(__dirname, '../src/products');
 if (fs.existsSync(productsSrcDir)) {
-  const productsDestDir = path.join(__dirname, '../public/products');
-  if (!fs.existsSync(productsDestDir)) {
-    fs.mkdirSync(productsDestDir, { recursive: true });
+  function processDir(srcDir, destDir, assetPrefix) {
+    if (!fs.existsSync(destDir)) {
+      fs.mkdirSync(destDir, { recursive: true });
+    }
+    const entries = fs.readdirSync(srcDir, { withFileTypes: true });
+    entries.forEach(entry => {
+      if (entry.isDirectory()) {
+        processDir(
+          path.join(srcDir, entry.name),
+          path.join(destDir, entry.name),
+          assetPrefix + '../'
+        );
+      } else if (entry.name.endsWith('.html')) {
+        processHtml(
+          path.join(srcDir, entry.name),
+          path.join(destDir, entry.name),
+          assetPrefix
+        );
+      }
+    });
   }
-  const productFiles = fs.readdirSync(productsSrcDir).filter(f => f.endsWith('.html'));
-  productFiles.forEach(file => {
-    processHtml(
-      path.join(productsSrcDir, file),
-      path.join(productsDestDir, file),
-      '../'
-    );
-  });
+  processDir(productsSrcDir, path.join(__dirname, '../public/products'), '../../');
 }
 
 console.log(`✓ HTML processed successfully (version: ${version})`);
