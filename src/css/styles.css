@@ -31,6 +31,7 @@
   --font-size: 16px;
   --font-size-2xs: 0.625rem;
   --font-size-xs: 0.75rem;
+  --font-size-lg: 1.125rem;
 }
 
 html {
@@ -288,17 +289,38 @@ p { max-width: 640px; }
   padding: 8px 0;
   opacity: 0;
   visibility: hidden;
-  transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+  transition: opacity var(--transition), transform var(--transition), visibility var(--transition) 0.15s;
+  transition-delay: 0s, 0s, 0.15s;
   z-index: 100;
   pointer-events: none;
 }
 
-.nav-item--dropdown:hover .nav-dropdown,
+@media (min-width: 769px) {
+  .nav-item--dropdown:hover .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+    transition-delay: 0s, 0s, 0s;
+  }
+}
+
 .nav-item--dropdown.open .nav-dropdown {
   opacity: 1;
   visibility: visible;
   transform: translateX(-50%) translateY(0);
   pointer-events: auto;
+  transition-delay: 0s, 0s, 0s;
+}
+
+/* Invisible bridge covers the gap so hover isn't lost while crossing it */
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 0;
+  right: 0;
+  height: 14px;
 }
 
 .nav-dropdown li {
@@ -1871,6 +1893,7 @@ p { max-width: 640px; }
     right: 0;
     background: var(--white);
     flex-direction: column;
+    align-items: flex-start;
     padding: 32px 24px;
     gap: 20px;
     transform: translateY(-120%);
@@ -1881,9 +1904,21 @@ p { max-width: 640px; }
 
   .nav-links.open {
     transform: translateY(0);
+    min-height: calc(100vh - 72px);
   }
 
-  /* Mobile nav dropdown */
+  .nav-links a {
+    font-size: var(--font-size-lg);
+  }
+
+  .nav-links .nav-links-cta {
+    margin-top: auto;
+  }
+
+  .nav-links .nav-links-cta, .nav-links .nav-links-cta .btn {
+    width: 100%;
+  }
+
   .nav-dropdown {
     position: static;
     transform: none;
@@ -1896,9 +1931,8 @@ p { max-width: 640px; }
     padding: 0;
     margin-left: 8px;
     overflow: hidden;
-    max-height: 0;
-    transition: max-height var(--transition);
-    pointer-events: none;
+    max-height: 200px;
+    pointer-events: auto;
   }
 
   .nav-item--dropdown.open .nav-dropdown {
